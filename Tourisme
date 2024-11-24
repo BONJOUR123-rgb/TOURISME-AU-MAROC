@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail Touristique du Maroc</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+<header class="banner">
+    <div class="container">
+        <h1 id="greeting"></h1>
+        <p>Un voyage inoubliable au cœur de la culture et des paysages marocains</p>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#activites">Activités</a></li>
+            <li><a href="#pratique">Pratique</a></li>
+            <li><a href="#evenements">Événements</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#communaute">Communauté</a></li>
+            <li><a href="#apropos">À propos</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<section id="accueil">
+    <h2>Bienvenue sur le Portail Touristique du Maroc</h2>
+    <p>Explorez le Maroc à travers ses différentes destinations et ses activités passionnantes.</p>
+</section>
+<section id="destinations" class="section">
+    <h2>Destinations</h2>
+    <div class="destination-list">
+        <article class="destination-item">
+            <h3>Marrakech</h3>
+            <p>Explorez les souks, les palais et les jardins.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Fès</h3>
+            <p>Découvrez l’une des plus anciennes villes du Maroc.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Casablanca</h3>
+            <p>Venez découvrir la ville moderne et ses plages.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Agadir</h3>
+            <p>Cette ville côtière est connue pour ses plages magnifiques, son port animé et ses activités nautiques.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Essaouira</h3>
+            <p>Visitez cette ville portuaire, classée au patrimoine mondial de l’UNESCO, et explorez ses plages et son vieux medina.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Tanger</h3>
+            <p>Ville stratégique à la jonction de la mer Méditerranée et de l’océan Atlantique, riche en histoire et culture.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Ouarzazate</h3>
+            <p>Surnommée la porte du désert, Ouarzazate est célèbre pour ses paysages désertiques et ses studios de cinéma.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Chefchaouen</h3>
+            <p>Ville aux maisons peintes en bleu, située dans les montagnes du Rif, idéale pour une escapade tranquille.</p>
+        </article>
+    </div>
+</section>
+<section id="activites" class="section">
+    <h2>Activités</h2>
+    <ul>
+        <li>Culturelles: Festivals, musées, artisanat</li>
+        <li>Aventure: Randonnée, sports nautiques</li>
+        <li>Gastronomie: Cours de cuisine, dégustations</li>
+        <li>Bien-être: Spa, yoga</li>
+    </ul>
+</section>
+<section id="pratique" class="section">
+    <h2>Pratique</h2>
+    <p>Informations pratiques pour les transports, l'hébergement, et les conseils de voyage.</p>
+</section>
+<section id="evenements" class="section">
+    <h2>Événements à venir</h2>
+    <p>Découvrez les festivals, concerts et expositions qui animent le Maroc tout au long de l’année.</p>
+    <ul id="eventList">
+        <li data-month="Janvier">Festival de Marrakech</li>
+        <li data-month="Février">Concert à Casablanca</li>
+        <li data-month="Mars">Exposition à Rabat</li>
+    </ul>
+    <button id="filterEvents">Filtrer par mois</button>
+</section>
+
+<script>
+    // Filtrer les événements par mois
+    document.getElementById("filterEvents").addEventListener("click", () => {
+        const month = prompt("Entrez un mois (ex: Janvier):");
+        const events = document.querySelectorAll("#eventList li");
+        events.forEach(event => {
+            event.style.display = event.dataset.month === month ? "block" : "none";
+        });
+    });
+</script>
+<section id="blog" class="section">
+    <h2>Blog</h2>
+    <div id="blogPosts">
+        <article>
+            <h3>Conseils pour voyager au Maroc</h3>
+            <p>Planifiez votre voyage avec ces conseils pratiques.</p>
+        </article>
+        <article>
+            <h3>Les meilleures expériences culinaires</h3>
+            <p>Découvrez la richesse de la gastronomie marocaine.</p>
+        </article>
+    </div>
+    <button id="loadMorePosts">Charger plus d'articles</button>
+</section>
+
+<script>
+    // Charger plus d'articles
+    document.getElementById("loadMorePosts").addEventListener("click", () => {
+        const newPost = document.createElement("article");
+        newPost.innerHTML = "<h3>Nouveaux secrets de voyage</h3><p>Explorez des endroits peu connus au Maroc.</p>";
+        document.getElementById("blogPosts").appendChild(newPost);
+    });
+</script>
+<section id="communaute" class="section">
+    <h2>Communauté</h2>
+    <p>Rejoignez notre communauté pour partager vos expériences et découvrir celles des autres.</p>
+    <form id="testimonialForm">
+        <textarea placeholder="Partagez votre témoignage" required></textarea>
+        <button type="submit">Envoyer</button>
+    </form>
+    <div id="testimonials"></div>
+</section>
+
+<script>
+    // Ajouter un témoignage
+    document.getElementById("testimonialForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const text = this.querySelector("textarea").value;
+        const testimonial = document.createElement("p");
+        testimonial.textContent = text;
+        document.getElementById("testimonials").appendChild(testimonial);
+        this.reset();
+    });
+</script>
+<section id="apropos" class="section">
+    <h2>À propos</h2>
+    <p>Nous sommes passionnés par le Maroc et souhaitons partager ses merveilles avec le monde entier.</p>
+    <ul>
+        <li>Mission : Offrir une expérience utilisateur enrichissante.</li>
+        <li>Vision : Devenir la plateforme numéro 1 pour le tourisme marocain.</li>
+        <li>Équipe : Des experts en tourisme et technologie.</li>
+    </ul>
+</section>
+<footer id="contact" class="footer">
+    <h2>Contact</h2>
+    <form id="contactForm">
+        <input type="email" placeholder="Votre email" required>
+        <textarea placeholder="Votre message" required></textarea>
+        <button type="submit">Envoyer</button>
+    </form>
+    <div id="messageStatus"></div>
+</footer>
+
+<script>
+    // Notification après envoi de message
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const statusDiv = document.getElementById("messageStatus");
+        statusDiv.innerHTML = "<p>Merci pour votre message! Nous vous répondrons sous peu.</p>";
+        statusDiv.style.color = "green";
+        setTimeout(() => {
+            statusDiv.innerHTML = "";
+        }, 3000);
+    });
+</script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+        color: #333;
+    }
+    .banner {
+        background: linear-gradient(to bottom, #ff6347, #ff9966);
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+    }
+    .banner h1 {
+        font-size: 3em;
+    }
+    .banner p {
+        font-size: 1.5em;
+    }
+    nav ul {
+        list-style: none;
+        padding: 0;
+        text-align: center;
+    }
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 1.2em;
+        transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+        color: #fff;
+        background-color: #ff6347;
+        padding: 5px;
+    }
+    .section {
+        padding: 20px;
+        margin: 10px 0;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .destination-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    .destination-item img {
+        width: 100%;
+        border-radius: 8px;
+    }
+    footer {
+        background-color: #2c3e50;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    footer h2 {
+        margin-top: 0;
+    }
+</style>
+<script>
+    // Animation de bienvenue au chargement du site
+    window.onload = function() {
+        const greeting = document.getElementById('greeting');
+        greeting.innerText = "Bienvenue sur le Portail Touristique du Maroc!";
+        greeting.style.transition = "opacity 1s ease-in-out";
+        greeting.style.opacity = 1;
+    }
+</script>
+<script>
+    // Animation au survol des éléments du menu
+    const navLinks = document.querySelectorAll("nav ul li a");
+    navLinks.forEach(link => {
+        link.addEventListener("mouseover", () => {
+            link.style.color = "#ff6347";
+            link.style.backgroundColor = "#fff";
+        });
+        link.addEventListener("mouseout", () => {
+            link.style.color = "#fff";
+            link.style.backgroundColor = "";
+        });
+    });
+</script>
+<script>
+    // Événement pour afficher plus d'informations sur une activité
+    const activities = document.querySelectorAll(".activite");
+    activities.forEach(activity => {
+        activity.addEventListener("click", function() {
+            alert("Plus d'infos sur cette activité bientôt !");
+        });
+    });
+</script>
+<script>
+    // Ajouter un témoignage avec animation
+    document.getElementById("testimonialForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const text = this.querySelector("textarea").value;
+        const testimonialDiv = document.createElement("div");
+        testimonialDiv.textContent = text;
+        testimonialDiv.style.transition = "opacity 1s";
+        document.getElementById("testimonials").appendChild(testimonialDiv);
+        testimonialDiv.style.opacity = 1;
+        this.reset();
+    });
+</script>
+<script>
+    // Ajouter un nouvel article de blog de manière dynamique
+    document.getElementById("loadMorePosts").addEventListener("click", () => {
+        const newPost = document.createElement("article");
+        newPost.innerHTML = "<h3>Explorer le Sahara</h3><p>Un guide complet pour visiter le désert marocain.</p>";
+        document.getElementById("blogPosts").appendChild(newPost);
+    });
+</script>
+<script>
+    // Ajouter une transition fluide entre les sections du site
+    const sections = document.querySelectorAll(".section");
+    sections.forEach(section => {
+        section.style.transition = "transform 0.5s ease-out";
+        section.addEventListener("mouseenter", () => {
+            section.style.transform = "scale(1.05)";
+        });
+        section.addEventListener("mouseleave", () => {
+            section.style.transform = "scale(1)";
+        });
+    });
+</script>
+<script>
+    // Animation de zoom sur les images de destination au survol
+    const destinationImages = document.querySelectorAll(".destination-item img");
+    destinationImages.forEach(image => {
+        image.addEventListener("mouseenter", () => {
+            image.style.transform = "scale(1.1)";
+        });
+        image.addEventListener("mouseleave", () => {
+            image.style.transform = "scale(1)";
+        });
+    });
+</script>
+</body>
+</html>
